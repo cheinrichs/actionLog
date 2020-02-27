@@ -44,6 +44,10 @@ func AddAction(actionString string) error {
 		return errors.New("no action provided")
 	}
 
+	if e.Time < 0 {
+		return errors.New("invalid time provided")
+	}
+
 	if actionData[e.Action] != nil {
 		actionData[e.Action] = append(actionData[e.Action], e.Time)
 	} else {

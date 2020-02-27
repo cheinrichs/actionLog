@@ -58,3 +58,12 @@ func TestAddActionWithInvalidAction(t *testing.T) {
 		t.Errorf("Adding Invalid Action, should fail, got: %s, want: %s.", actual, expected)
 	}
 }
+
+func TestAddActionWithInvalidTime(t *testing.T) {
+	var expected error = errors.New("invalid time provided")
+	var actual = AddAction("{\"action\":\"jump\", \"time\":-10}")
+
+	if expected.Error() != actual.Error() {
+		t.Errorf("Adding Invalid Time, should fail, got: %s, want: %s.", actual, expected)
+	}
+}
