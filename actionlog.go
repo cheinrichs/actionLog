@@ -29,7 +29,7 @@ var actionData = make(map[string][]int)
 // ]
 var averages = []actionAverage{}
 
-//AddAction Adds an action
+//AddAction Adds an action and stores the given time in actionData
 func AddAction(actionString string) error {
 	bytes := []byte(actionString)
 
@@ -91,7 +91,7 @@ func updateAverage(action string, avg int) {
 	averages = append(averages, newActionAverage)
 }
 
-//GetStats Gets stats for all actions
+//GetStats returns a JSON encoded string that contains actions and their average time
 func GetStats() string {
 	averagesJSON, err := json.Marshal(averages)
 	if err != nil {
