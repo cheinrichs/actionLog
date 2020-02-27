@@ -95,7 +95,7 @@ func updateAverage(action string, avg int) {
 func GetStats() string {
 	averagesJSON, err := json.Marshal(averages)
 	if err != nil {
-		panic(err)
+		return err.Error()
 	}
 
 	return string(averagesJSON)
