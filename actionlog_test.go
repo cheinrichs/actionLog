@@ -1,6 +1,9 @@
 package actionlog
 
-import "testing"
+import (
+	"errors"
+	"testing"
+)
 
 func TestAddAction(t *testing.T) {
 	var expected error = nil
@@ -35,5 +38,14 @@ func TestGetStats(t *testing.T) {
 
 	if expected != actual {
 		t.Errorf("Get Stats failed, got: %s, want: %s.", actual, expected)
+	}
+}
+
+func TestAddActionWithInvalidJSON(t *testing.T) {
+	var expected error = errors.New("invalid character '1' looking for beginning of object key string")
+	var actual = AddAction("{1:\"jump\", \"time\":200}")
+
+	if expected.Error() != actual.Error() {
+		t.Errorf("Adding Invalid JSON, should fail, got: %s, want: %s.", actual, expected)
 	}
 }
