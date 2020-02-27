@@ -1,6 +1,9 @@
 package actionlog
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"errors"
+)
 
 type action struct {
 	Action string `json:"action"`
@@ -35,6 +38,10 @@ func AddAction(actionString string) error {
 	err := json.Unmarshal(bytes, &e)
 	if err != nil {
 		return err
+	}
+
+	if e.Action == "" {
+		return errors.New("no action provided")
 	}
 
 	if actionData[e.Action] != nil {

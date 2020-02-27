@@ -49,3 +49,12 @@ func TestAddActionWithInvalidJSON(t *testing.T) {
 		t.Errorf("Adding Invalid JSON, should fail, got: %s, want: %s.", actual, expected)
 	}
 }
+
+func TestAddActionWithInvalidAction(t *testing.T) {
+	var expected error = errors.New("no action provided")
+	var actual = AddAction("{\"action\":\"\", \"time\":200}")
+
+	if expected.Error() != actual.Error() {
+		t.Errorf("Adding Invalid Action, should fail, got: %s, want: %s.", actual, expected)
+	}
+}
