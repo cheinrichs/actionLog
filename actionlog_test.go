@@ -30,7 +30,7 @@ func TestThirdAddAction(t *testing.T) {
 }
 
 func TestGetStats(t *testing.T) {
-	var expected string = ""
+	var expected string = "[{\"action\":\"jump\",\"avg\":150},{\"action\":\"run\",\"avg\":75}]"
 	var actual string = GetStats()
 
 	if expected != actual {
